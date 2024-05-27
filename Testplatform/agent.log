@@ -1,0 +1,347 @@
+2024-05-26 14:45:48,388 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-26 14:45:48,619 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-26 14:45:52,028 - logger_config - INFO - Response Status Code: 200
+2024-05-26 14:45:52,028 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Sun, 26 May 2024 09:15:48 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-26 14:45:52,033 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:48.618787657Z","response":"Object","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:48.63598626Z","response":"ive","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:48.652844733Z","response":":","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:48.669605625Z","response":" ","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:48.686430043Z","response":"\
+2024-05-26 14:45:52,037 - logger_config - INFO - Generated Plan:
+Objective: 
+Using Python, create a recursive function that prints out the first n numbers in the Fibonacci sequence.
+
+Steps to achieve the objective:
+1. Define a function called "fibonacci" that takes an integer n as its argument.
+2. If n is less than or equal to 0, return None.
+3. If n equals 1, print 0 and return.
+4. If n equals 2, print both 0 and 1.
+5. Recursively call the "fibonacci" function with argument (n-1) and (n-2). Print the sum of the two results.
+
+Considerations or prerequisites needed for the project:
+1. Python should be installed on the system where this script will be run.
+2. The user should have a basic understanding of Python programming concepts such as functions, recursion, and print statements.
+2024-05-26 14:45:52,038 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-26 14:45:52,450 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-26 14:45:54,688 - logger_config - INFO - Response Status Code: 200
+2024-05-26 14:45:54,688 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Sun, 26 May 2024 09:15:52 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-26 14:45:54,691 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:52.450368127Z","response":"``","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:52.467734193Z","response":"`","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:52.484606672Z","response":"python","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:52.501498741Z","response":"\n","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:52.518390895Z","response":"
+2024-05-26 14:45:54,695 - logger_config - INFO - Generated Code:
+def fibonacci(n):
+    if n <= 0:
+        return None
+    elif n == 1:
+        print("0")
+        return
+    else:
+        fibonacci(n - 1)
+        fibonacci(n - 2)
+        result = fibonacci(n - 1) + fibonacci(n - 2)
+        print(result)
+
+fibonacci(5)  # This should print: 0, 1, 1, 2, 3
+2024-05-26 14:45:54,695 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-26 14:45:55,050 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-26 14:45:59,003 - logger_config - INFO - Response Status Code: 200
+2024-05-26 14:45:59,003 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Sun, 26 May 2024 09:15:55 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-26 14:45:59,009 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:55.049964219Z","response":"Here","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:55.067638838Z","response":" is","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:55.085012533Z","response":" a","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:55.102394087Z","response":" set","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:15:55.119795944Z","response"
+2024-05-26 14:45:59,014 - logger_config - INFO - Generated Tests:
+def fibonacci_test():
+    assert fibonacci(0) == None, "Test case 1 failed"
+    assert fibonacci(1) == [0], "Test case 2 failed"
+    assert fibonacci(2) == [0, 1], "Test case 3 failed"
+    assert fibonacci(5) == [0, 1, 1, 2, 3], "Test case 4 failed"
+    assert fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34], "Test case 5 failed"
+
+fibonacci_test()  # If there are no errors, all tests have passed
+2024-05-26 14:46:43,199 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-26 14:46:43,498 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-26 14:46:50,177 - logger_config - INFO - Response Status Code: 200
+2024-05-26 14:46:50,177 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Sun, 26 May 2024 09:16:43 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-26 14:46:50,185 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:43.497850327Z","response":"Sure","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:43.515376101Z","response":",","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:43.532667691Z","response":" here","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:43.549841832Z","response":"'","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:43.566874169Z","response":"
+2024-05-26 14:46:50,194 - logger_config - INFO - Generated Documentation:
+def fibonacci(n):
+    """
+    This function calculates the n-th Fibonacci number and prints it to the console. 
+    If n is less than or equal to zero, it returns None. 
+    If n is equal to one, it prints "0" to the console and then returns. 
+    Otherwise, it recursively calls itself twice with parameters n-1 and n-2, 
+    prints the sum of these two recursive function calls to the console, 
+    and stores this value in the variable 'result'.
+
+    Args:
+    n (int): The position of the Fibonacci number to calculate.
+
+    Returns:
+    None: This function does not return a value.
+
+    Example:
+    >>> fibonacci(5)
+    0
+    1
+    1
+    2
+    3
+    """
+2024-05-26 14:46:50,195 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-26 14:46:50,554 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-26 14:46:58,410 - logger_config - INFO - Response Status Code: 200
+2024-05-26 14:46:58,411 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Sun, 26 May 2024 09:16:50 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-26 14:46:58,420 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:50.554147148Z","response":"Here","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:50.571185471Z","response":" is","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:50.588136048Z","response":" an","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:50.605060549Z","response":" optimized","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-26T09:16:50.622093514Z","re
+2024-05-26 14:46:58,430 - logger_config - INFO - Optimized Code:
+def fibonacci(n):
+    """
+    This function calculates the n-th Fibonacci number and prints it to the console. 
+    If n is less than or equal to zero, it returns None. 
+    If n is equal to one, it prints "0" to the console and then returns. 
+    Otherwise, it recursively calls itself twice with parameters n-1 and n-2, 
+    prints the sum of these two recursive function calls to the console, 
+    and stores this value in the variable 'result'.
+
+    Args:
+    n (int): The position of the Fibonacci number to calculate.
+
+    Returns:
+    None: this function does not return a value.
+
+    Example:
+    >>> fibonacci(5)
+    0
+    1
+    1
+    2
+    3
+    """
+
+    if n <= 0:
+        return None
+    elif n == 1:
+        print("0")
+        return
+    else:
+        fib = [0, 1]
+        while len(fib) < n:
+            fib.append(fib[-1] + fib[-2])
+        print(fib[n - 1])
+
+2024-05-27 10:08:55,777 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-27 10:08:59,504 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-27 10:09:07,047 - logger_config - INFO - Response Status Code: 200
+2024-05-27 10:09:07,047 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Mon, 27 May 2024 04:38:59 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-27 10:09:07,055 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:38:59.504003364Z","response":"Object","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:38:59.523059998Z","response":"ive","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:38:59.540944661Z","response":":","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:38:59.559788788Z","response":"\n","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:38:59.578261231Z","response":
+2024-05-27 10:09:07,067 - logger_config - INFO - Generated Plan:
+Objective:
+Create a recursion function using Python that calculates and prints the first 10 Fibonacci numbers.
+
+Steps to achieve the objective:
+1. Define the base case for the recursion: When n equals to 0 or 1, return the value of n itself.
+2. Implement the recursive case: For any other n, return the sum of the previous two Fibonacci numbers (n-1) and (n-2).
+3. Create a function that calls the recursion function from step 2 for each value in the range from 0 to 10 (inclusive).
+4. Print the result of the function call on each iteration.
+
+Considerations or prerequisites:
+1. Make sure to import any necessary packages at the beginning of your code snippet.
+2. The recursion function should be designed to handle inputs of type integer, and it should return an error if non-integer or negative input is passed.
+3. Ensure that the code snippet is self-contained and clearly understandable.
+
+Python Code Snippet:
+```python
+def fibonacci(n):
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    elif n == 0 or n == 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+def main():
+    for i in range(10):
+        print(fibonacci(i))
+
+if __name__ == "__main__":
+    main()
+```
+
+The provided code snippet includes the recursion function `fibonacci()` that calculates the Fibonacci numbers and a main function `main()` that prints out the first 10 Fibonacci numbers. It also contains error handling for non-integer or negative input values.
+2024-05-27 10:09:07,068 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-27 10:09:07,727 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-27 10:09:11,211 - logger_config - INFO - Response Status Code: 200
+2024-05-27 10:09:11,211 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Mon, 27 May 2024 04:39:07 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-27 10:09:11,215 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:07.727364647Z","response":"The","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:07.745520338Z","response":" provided","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:07.763408309Z","response":" Python","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:07.781108518Z","response":" code","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:07.798866929Z"
+2024-05-27 10:09:11,221 - logger_config - INFO - Generated Code:
+def fibonacci(n):
+    if not Isinstance(n, int) or n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    elif n == 0 or n == 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+def main():
+    for i in range(10):
+        print(fibonacci(i))
+
+if __name__ == "__main__":
+    main()
+2024-05-27 10:09:11,222 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-27 10:09:11,591 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-27 10:09:16,832 - logger_config - INFO - Response Status Code: 200
+2024-05-27 10:09:16,832 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Mon, 27 May 2024 04:39:11 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-27 10:09:16,838 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:11.591388148Z","response":"Test","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:11.609390088Z","response":" ","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:11.627266174Z","response":"1","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:11.645410927Z","response":" (","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:11.663295485Z","response":"Val
+2024-05-27 10:09:16,844 - logger_config - INFO - Generated Tests:
+def test_fibonacci():
+    assert fibonacci(0) == 0
+    assert fibonacci(1) == 1
+    assert fibonacci(2) == 1
+    assert fibonacci(3) == 2
+    assert fibonacci(4) == 3
+    assert fibonacci(5) == 5
+    assert fibonacci(6) == 8
+    assert fibonacci(7) == 13
+    assert fibonacci(8) == 21
+    assert fibonacci(9) == 34
+def test_non_integer():
+    try:
+        fibonacci("5")
+    except ValueError as e:
+        assert str(e) == "Input must be a non-negative integer."
+def test_negative_input():
+    try:
+        fibonacci(-1)
+    except ValueError as e:
+        assert str(e) == "Input must be a non-negative integer."
+2024-05-27 10:09:46,282 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-27 10:09:46,594 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-27 10:09:54,043 - logger_config - INFO - Response Status Code: 200
+2024-05-27 10:09:54,043 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Mon, 27 May 2024 04:39:46 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-27 10:09:54,052 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:46.593791306Z","response":"Sure","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:46.611899039Z","response":",","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:46.629366407Z","response":" I","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:46.64679394Z","response":" can","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:46.664231253Z","response":" 
+2024-05-27 10:09:54,061 - logger_config - INFO - Generated Documentation:
+def fibonacci(n):
+    """
+    Calculates the nth Fibonacci number.
+
+    Args:
+        n (int): A non-negative integer representing the position in the Fibonacci sequence.
+
+    Returns:
+        int: The nth Fibonacci number.
+
+    Raises:
+        ValueError: If input is not a non-negative integer.
+
+    Example:
+        >>> fibonacci(10)
+        55
+    """
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    elif n == 0 or n == 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+def main():
+    """
+    Prints the first 10 Fibonacci numbers.
+    """
+    for i in range(10):
+        print(fibonacci(i))
+
+if __name__ == "__main__":
+    main()
+2024-05-27 10:09:54,062 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-05-27 10:09:54,487 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/1.1" 200 None
+2024-05-27 10:10:00,917 - logger_config - INFO - Response Status Code: 200
+2024-05-27 10:10:00,917 - logger_config - INFO - Response Headers:
+{'Content-Type': 'application/x-ndjson', 'Date': 'Mon, 27 May 2024 04:39:54 GMT', 'Transfer-Encoding': 'chunked'}
+2024-05-27 10:10:00,924 - logger_config - INFO - Raw Response Content (first 500 chars):
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:54.486934924Z","response":"Here","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:54.504707646Z","response":"'","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:54.522662772Z","response":"s","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:54.539938458Z","response":" a","done":false}
+{"model":"codeqwen:latest","created_at":"2024-05-27T04:39:54.557201469Z","response":" mo
+2024-05-27 10:10:00,932 - logger_config - INFO - Optimized Code:
+def fibonacci(n, memo={}):
+    """
+    Calculates the nth Fibonacci number.
+
+    Args:
+        n (int): A non-negative integer representing the position in the Fibonacci sequence.
+
+    Returns:
+        int: The nth Fibonacci number.
+
+    Raises:
+        ValueError: If input is not a non-negative integer.
+
+    Example:
+        >>> fibonacci(10)
+        55
+    """
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Input must be a non-negative integer.")
+    elif n == 0 or n == 1:
+        return n
+    elif n not in memo:
+        memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo)
+    return memo[n]
+
+def main():
+    """
+    Prints the First 10 Fibonacci numbers.
+    """
+    for i in range(10):
+        print(fibonacci(i))
+
+if __name__ == "__main__":
+    main()
