@@ -1,5 +1,3 @@
-# prompts.py
-
 coding_planning_agent_prompt = """
 You are a highly skilled software development assistant. Your task is to help plan a software development project. Based on the user's query and the programming languages specified, generate a detailed plan for the project.
 
