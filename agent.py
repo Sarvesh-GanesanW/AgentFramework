@@ -83,15 +83,22 @@ class CoderAgent:
         return ''.join(responses)
 
     def extract_code(self, content):
+        self.logger.debug("Starting code extraction")
         code_block = []
         in_code_block = False
         for line in content.splitlines():
+            self.logger.debug(f"Processing line: {repr(line)}")
             if line.strip().startswith("```"):
                 in_code_block = not in_code_block
+                self.logger.debug(f"Code block {'started' if in_code_block else 'ended'}")
                 continue
             if in_code_block:
                 code_block.append(line)
-        return "\n".join(code_block)
+                self.logger.debug(f"Added line to code block: {repr(line)}")
+        
+        extracted_code = "\n".join(code_block)
+        self.logger.debug(f"Final extracted code:\n{repr(extracted_code)}")
+        return extracted_code
 
     def generate_plan(self, query, languages):
         system_prompt = self.planning_agent_prompt.format(query=query, languages=",".join(languages))
@@ -255,7 +262,6 @@ class CoderAgent:
         return refined_code
 
     def execute(self):
-        # Mapping of programming languages to file extensions
         language_extensions = {
             'python': 'py',
             'javascript': 'js',
@@ -267,20 +273,13 @@ class CoderAgent:
             'ruby': 'rb',
             'go': 'go',
             'php': 'php',
-            # Add more mappings as needed
         }
 
         for i in range(self.iterations):
             query = input("Enter your coding query: ")
             
             detected_language = detect_language(query)
-
-            if detected_language:
-                languages = [detected_language]
-            else:
-                languages = input("Enter the programming languages (comma-separated, e.g., python,javascript,html): ").strip().lower().split(',')
-
-            # Ensure primary_language is defined
+            languages = [detected_language] if detected_language else input("Enter the programming languages (comma-separated, e.g., python,javascript,html): ").strip().lower().split(',')
             primary_language = languages[0]
 
             # Step 1: Generate Plan
@@ -289,18 +288,48 @@ class CoderAgent:
                 self.logger.error("Failed to generate plan. Aborting execution.")
                 continue
 
-            # Step 2: Generate Code based on Plan
-            code = self.generate_code(plan, languages)
-            if code is None:
-                self.logger.error("Failed to generate code. Aborting execution.")
+            max_attempts = 5
+            for attempt in range(max_attempts):
+                try:
+                    # Step 2: Generate Code based on Plan
+                    code = self.generate_code(plan, languages)
+                    self.logger.debug(f"Code after generation (Attempt {attempt + 1}):\n{repr(code)}")
+                    if code is None:
+                        raise ValueError("Failed to generate code.")
+
+                    # Step 3: Generate Tests for the Code
+                    tests = self.generate_tests(plan, code, languages)
+                    if tests is None:
+                        raise ValueError("Failed to generate tests.")
+
+                    # Save the code to a temporary file for testing
+                    temp_code_filepath = "temp_generated_code.py"
+                    self.logger.debug(f"Code before saving (Attempt {attempt + 1}):\n{repr(code)}")
+                    save_code(code, temp_code_filepath, self.verbose)
+
+                    # Run the tests
+                    test_results = run_tests(code, tests, primary_language, self.verbose)
+
+                    if test_results == 0:
+                        self.logger.info(f"All tests passed on attempt {attempt + 1}")
+                        break
+                    else:
+                        raise ValueError(f"Tests failed: {test_results}")
+
+                except (ValueError, SyntaxError) as e:
+                    self.logger.warning(f"Error on attempt {attempt + 1}: {str(e)}")
+                    if attempt < max_attempts - 1:
+                        self.logger.info("Refining code and retrying...")
+                        plan += f"\nAdditional feedback: {str(e)}"
+                    else:
+                        self.logger.error(f"Failed to generate correct code after {max_attempts} attempts.")
+                        break
+
+            else:
+                self.logger.error("All attempts to generate valid code failed. Aborting execution.")
                 continue
 
-            # Step 3: Generate Tests for the Code
-            tests = self.generate_tests(plan, code, languages)
-            if tests is None:
-                self.logger.error("Failed to generate tests. Aborting execution.")
-                continue
-
+            # If we've reached here, we have valid code that passed tests
             # Collect user feedback and refine code
             feedback = self.collect_feedback(code, tests, primary_language)
             if feedback:
@@ -321,56 +350,22 @@ class CoderAgent:
                 self.logger.error("Failed to optimize code. Aborting execution.")
                 continue
 
-            # Filename for final code
-            filename = input("Enter the filename (without extension) for the final code: ")
-            extension = language_extensions.get(primary_language, 'txt')  # Default to 'txt' if language is not mapped
-            filepath = f"{filename}.{extension}"
-
-            # Loop until all tests pass
-            all_tests_passed = False
-            while not all_tests_passed:
-                # Save the optimized code to a temporary file for testing
-                temp_code_filepath = "temp_generated_code.py"
-                save_code(optimized_code, temp_code_filepath, self.verbose)
-
-                # Run the tests
-                test_results = run_tests(optimized_code, tests, primary_language, self.verbose)
-
-                # Check if all tests passed
-                all_tests_passed = test_results == 0  # Assuming run_tests returns 0 if all tests pass
-
-                if not all_tests_passed:
-                    # If tests failed, regenerate the code
-                    code = self.generate_code(plan, languages)
-                    if code is None:
-                        self.logger.error("Failed to regenerate code. Aborting execution.")
-                        break
-                    tests = self.generate_tests(plan, code, languages)
-                    if tests is None:
-                        self.logger.error("Failed to regenerate tests. Aborting execution.")
-                        break
-                    documented_code = self.generate_documentation(code, languages)
-                    if documented_code is None:
-                        self.logger.error("Failed to regenerate documentation. Aborting execution.")
-                        break
-                    optimized_code = self.optimize_code(documented_code, languages)
-                    if optimized_code is None:
-                        self.logger.error("Failed to re-optimize code. Aborting execution.")
-                        break
-
             # Save the final version of the code
+            filename = input("Enter the filename (without extension) for the final code: ")
+            extension = language_extensions.get(primary_language, 'txt')
+            filepath = f"{filename}.{extension}"
             save_code(optimized_code, filepath, self.verbose)
 
-            # Step 8: Execute the Generated Code
+            # Execute the Generated Code
             execute_code(filepath, primary_language, self.verbose)
 
-            # Step 10: Clean up temporary files
+            # Clean up temporary files
             temp_files = [temp_code_filepath, "test_generated_code.py"]
             for temp_file in temp_files:
                 if os.path.exists(temp_file):
                     os.remove(temp_file)
 
-            # Example of fetching a code reference
+            # Fetch a code reference
             reference_query = query
             reference = self.fetch_code_reference(reference_query)
             print(reference)
