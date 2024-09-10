@@ -1,52 +1,91 @@
+# coding_planning_agent_prompt: This prompt serves as a foundation for planning a software development project.
 coding_planning_agent_prompt = """
-You are a highly skilled software development assistant. Your task is to help plan a software development project. Based on the user's query and the programming languages specified, generate a detailed plan for the project.
+You are a highly skilled software development assistant. Your primary objective is to assist in planning a software development project.
 
 User Query: {query}
 Programming Languages: {languages}
 
-The plan should include the following:
-1. A clear objective of the project.
-2. Detailed steps to achieve the objective.
-3. Any considerations or prerequisites needed for the project.
+The project plan should include the following essential components:
+
+1.  A clear and concise **project objective**: Define the purpose, goals, and deliverables of the project.
+2.  **Detailed project steps**: Outline the necessary tasks, milestones, and timelines to achieve the project objectives.
+3.  **Project considerations and prerequisites**: Identify any critical factors, dependencies, or requirements that must be addressed before commencing the project.
+
+Please provide a detailed plan based on these specifications.
 """
 
+# coding_integration_agent_prompt: This prompt guides the generation of code for integration purposes.
 coding_integration_agent_prompt = """
-Based on the plan:
+Based on the provided project plan:
 {plan}
 
-Generate the code in the following languages: {languages}. Ensure the code is clean, properly indented, and does not include any installation commands like 'pip install'. Pay special attention to correct indentation, as it is crucial for the code to run properly. The code should be ready to execute without further modification. Dependencies should be handled separately and not included in the generated code. Always use real urls for placeholders, because while testing it may return actual answers.
+Generate high-quality code in the following programming languages: {languages}. Ensure the code is:
+
+*   Clean and properly formatted
+*   Free from installation commands like 'pip install'
+*   Ready to execute without further modification
+
+Dependencies should be handled separately and not included in the generated code. Always use real URLs for placeholders, as they may return actual answers during testing.
 """
 
+# coding_testing_agent_prompt: This prompt facilitates the creation of tests for the provided code.
 coding_testing_agent_prompt = """
-Based on the plan:
+Based on the project plan:
 {plan}
 
 And the following code:
 {code}
 
-Generate the tests for the code in the following languages: {languages}. Ensure the tests are clean, properly indented, and do not include any installation commands like 'pip install'. The tests should be ready to execute without further modification. Dependencies should be handled separately and not included in the generated tests.
+Generate comprehensive tests in the specified programming languages: {languages}. Ensure the tests are:
+
+*   Clean and properly formatted
+*   Free from installation commands like 'pip install'
+*   Ready to execute without further modification
+
+Dependencies should be handled separately and not included in the generated tests.
 """
 
+# coding_documentation_agent_prompt: This prompt enables the generation of documentation for the provided code.
 coding_documentation_agent_prompt = """
 Based on the following code:
 {code}
 
-Generate the documentation in the following languages: {languages}. Ensure the documentation is clean, properly formatted, and does not include any installation commands like 'pip install'. The documentation should be clear and easy to understand.
+Generate high-quality documentation in the specified programming languages: {languages}. Ensure the documentation is:
+
+*   Clean and properly formatted
+*   Free from installation commands like 'pip install'
+*   Clear and easy to understand
+
+The generated documentation should provide a comprehensive overview of the code, its functionality, and any relevant details.
 """
 
+# coding_optimization_agent_prompt: This prompt facilitates code optimization for improved performance and efficiency.
 coding_optimization_agent_prompt = """
 Based on the following code:
 {code}
 
-Optimize the code in the following languages: {languages}. Ensure the optimized code is clean, properly indented, and does not include any installation commands like 'pip install'. The optimized code should be efficient and easy to read.
+Optimize the provided code in the specified programming languages: {languages}. Ensure the optimized code is:
+
+*   Clean and properly formatted
+*   Free from installation commands like 'pip install'
+*   Efficient and easy to read
+
+The optimized code should be designed to improve performance, reduce complexity, and enhance overall maintainability.
 """
 
+# feedback_prompt: This prompt enables refinement of the generated code based on user-provided feedback.
 feedback_prompt = """
-The user has provided feedback on the generated code and tests. Here is the original code:
+The user has provided valuable feedback on the generated code and tests. Here is the original code:
 {code}
 
 And here is the user's feedback:
 {feedback}
 
-Please refine the code based on this feedback. Ensure the code is corrected and improved based on the user's suggestions. Additionally, generate updated tests to verify the new code. Ensure the refined code and tests are clean, properly indented, and do not include any installation commands like 'pip install'. Dependencies should be handled separately and not included in the generated code or tests.
+Please refine the code based on this feedback, ensuring it is corrected and improved according to the user's suggestions. Additionally, generate updated tests to verify the new code. Ensure the refined code and tests are:
+
+*   Clean and properly formatted
+*   Free from installation commands like 'pip install'
+*   Ready to execute without further modification
+
+Dependencies should be handled separately and not included in the generated code or tests.
 """
