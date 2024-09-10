@@ -345,3 +345,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+2024-09-10 12:06:13,075 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-09-10 12:06:13,077 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 404 69
+2024-09-10 12:06:13,077 - logger_config - ERROR - Request failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate. Retrying in 5 seconds...
+2024-09-10 12:06:18,078 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-09-10 12:06:18,079 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 404 69
+2024-09-10 12:06:18,079 - logger_config - ERROR - Request failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate. Retrying in 5 seconds...
+2024-09-10 12:06:23,079 - urllib3.connectionpool - DEBUG - Starting new HTTP connection (1): localhost:11434
+2024-09-10 12:06:23,080 - urllib3.connectionpool - DEBUG - http://localhost:11434 "POST /api/generate HTTP/11" 404 69
+2024-09-10 12:06:23,080 - logger_config - ERROR - Request failed: 404 Client Error: Not Found for url: http://localhost:11434/api/generate. Retrying in 5 seconds...
+2024-09-10 12:06:28,081 - logger_config - ERROR - Max retries exceeded. Aborting request.
+2024-09-10 12:06:28,081 - logger_config - ERROR - Failed to generate plan. Aborting execution.

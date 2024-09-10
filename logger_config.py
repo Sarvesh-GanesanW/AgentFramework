@@ -2,7 +2,7 @@
 import logging
 import os
 
-def setup_logging(log_file='agent.log', verbose=False):
+def setup_logging(log_file='test_agent.log', verbose=False):
     # Ensure the log directory exists
     log_dir = os.path.dirname(log_file)
     if log_dir and not os.path.exists(log_dir):

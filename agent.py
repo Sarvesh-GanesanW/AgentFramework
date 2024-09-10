@@ -51,23 +51,32 @@ class CoderAgent:
         retries = 0
         while retries < self.max_retries:
             try:
-                response = requests.post(self.url, headers=self.headers, data=json.dumps(data), timeout=180)
+                payload = {
+                    "model": self.model,
+                    "prompt": data['prompt'],
+                    "stream": True 
+                }
+                response = requests.post(self.url, headers=self.headers, json=payload, stream=True, timeout=180)
                 response.raise_for_status()
                 return response
             except requests.exceptions.RequestException as e:
-                self.logger.error(f"Request failed: {e}. Retrying in {self.retry_delay} seconds...")
+                self.logger.error(f"Request failed: {e}")
+                self.logger.error(f"Request URL: {self.url}")
+                self.logger.error(f"Request Headers: {self.headers}")
+                self.logger.error(f"Request Payload: {payload}")
                 retries += 1
                 time.sleep(self.retry_delay)
         self.logger.error("Max retries exceeded. Aborting request.")
         return None
 
-    def parse_ndjson(self, ndjson_text):
+    def parse_ndjson(self, response_text):
         responses = []
-        for line in ndjson_text.strip().split("\n"):
-            if line.strip():
+        for line in response_text.splitlines():
+            if line:
                 try:
                     data = json.loads(line)
-                    responses.append(data.get('response', ''))
+                    if 'response' in data:
+                        responses.append(data['response'])
                 except json.JSONDecodeError as e:
                     self.logger.error(f"JSON Decode Error: {e}")
                     continue
@@ -98,12 +107,12 @@ class CoderAgent:
         response = self.make_request(data)
         if response is None:
             return None
-        
+
         if self.verbose:
             self.logger.info(f"Response Status Code: {response.status_code}")
             self.logger.info(f"Response Headers:\n{response.headers}")
             self.logger.info(f"Raw Response Content (first 500 chars):\n{response.text[:500]}")
-        
+
         plan = self.parse_ndjson(response.text)
         if self.verbose:
             self.logger.info(f"Generated Plan:\n{plan}")
@@ -369,12 +378,13 @@ class CoderAgent:
 
 
 
+    
 
 
 if __name__ == '__main__':
-    model = "codeqwen:latest"
-    model_tool = "codeqwen:latest"
-    model_qa = "codeqwen:latest"
+    model = "llama3.1:8b"
+    model_tool = "llama3.1:8b"
+    model_qa = "llama3.1:8b"
     model_endpoint = 'http://localhost:11434/api/generate'
     stop = None
     server = 'ollama'

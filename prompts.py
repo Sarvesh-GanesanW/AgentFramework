@@ -14,7 +14,7 @@ coding_integration_agent_prompt = """
 Based on the plan:
 {plan}
 
-Generate the code in the following languages: {languages}. Ensure the code is clean, properly indented, and does not include any installation commands like 'pip install'. The code should be ready to execute without further modification. Dependencies should be handled separately and not included in the generated code. Always use real urls for placeholders, because while testing it may return actual answers.
+Generate the code in the following languages: {languages}. Ensure the code is clean, properly indented, and does not include any installation commands like 'pip install'. Pay special attention to correct indentation, as it is crucial for the code to run properly. The code should be ready to execute without further modification. Dependencies should be handled separately and not included in the generated code. Always use real urls for placeholders, because while testing it may return actual answers.
 """
 
 coding_testing_agent_prompt = """
@@ -31,7 +31,7 @@ coding_documentation_agent_prompt = """
 Based on the following code:
 {code}
 
-Generate the documentation in the following languages: {languages}. Ensure the documentation is clean, properly formatted, and does not include any installation commands like 'pip install'. The documentation should be clear and easy to understand. After generating the documentation, check the indentation of the code.
+Generate the documentation in the following languages: {languages}. Ensure the documentation is clean, properly formatted, and does not include any installation commands like 'pip install'. The documentation should be clear and easy to understand.
 """
 
 coding_optimization_agent_prompt = """
