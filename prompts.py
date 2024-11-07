@@ -1,4 +1,3 @@
-# coding_planning_agent_prompt: This prompt serves as a foundation for planning a software development project.
 coding_planning_agent_prompt = """
 You are a highly skilled software development assistant. Your primary objective is to assist in planning a software development project.
 
@@ -14,7 +13,6 @@ The project plan should include the following essential components:
 Please provide a detailed plan based on these specifications.
 """
 
-# coding_integration_agent_prompt: This prompt guides the generation of code for integration purposes.
 coding_integration_agent_prompt = """
 Based on the provided project plan:
 {plan}
@@ -28,7 +26,6 @@ Generate high-quality code in the following programming languages: {languages}. 
 Dependencies should be handled separately and not included in the generated code. Always use real URLs for placeholders, as they may return actual answers during testing.
 """
 
-# coding_testing_agent_prompt: This prompt facilitates the creation of tests for the provided code.
 coding_testing_agent_prompt = """
 Based on the project plan:
 {plan}
@@ -45,7 +42,6 @@ Generate comprehensive tests in the specified programming languages: {languages}
 Dependencies should be handled separately and not included in the generated tests.
 """
 
-# coding_documentation_agent_prompt: This prompt enables the generation of documentation for the provided code.
 coding_documentation_agent_prompt = """
 Based on the following code:
 {code}
@@ -59,7 +55,6 @@ Generate high-quality documentation in the specified programming languages: {lan
 The generated documentation should provide a comprehensive overview of the code, its functionality, and any relevant details.
 """
 
-# coding_optimization_agent_prompt: This prompt facilitates code optimization for improved performance and efficiency.
 coding_optimization_agent_prompt = """
 Based on the following code:
 {code}
@@ -73,7 +68,6 @@ Optimize the provided code in the specified programming languages: {languages}. 
 The optimized code should be designed to improve performance, reduce complexity, and enhance overall maintainability.
 """
 
-# feedback_prompt: This prompt enables refinement of the generated code based on user-provided feedback.
 feedback_prompt = """
 The user has provided valuable feedback on the generated code and tests. Here is the original code:
 {code}
